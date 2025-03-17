@@ -1,4 +1,4 @@
-CREATE DATABASE OnlineKurse;
+
 USE OnlineKurse;
 
 -- Tabelle: Kategorien
@@ -8,7 +8,7 @@ CREATE TABLE Kategorien (
 );
 CREATE TABLE Platform(
     id int Auto_increment Primary Key,
-    name VARCHAR(255),
+    name VARCHAR(255)
 );
 
 create TABLE Ort(
@@ -18,7 +18,7 @@ create TABLE Ort(
 );
 create Table Trainer
 (
-    id         int Auto increment Primary Key,
+    id         int Auto_Increment Primary Key,
     Geburtstag Date,
     Bio        text,
     Ort_id     int,
@@ -32,13 +32,13 @@ CREATE TABLE Kurse (
     titel VARCHAR(255) NOT NULL,
     datum DATE NOT NULL,
     dauer INT NOT NULL,
-    schwierigkeit ENUM('Anfänger', 'Fortgeschritten', 'Experte') NOT NULL,
+    schwierigkeit int,
     kategorie_id INT,
     Trainer_id int,
     Platform_id int,
     FOREIGN KEY (Platform_id) REFERENCES Platform(id),
     FOREIGN KEY (Trainer_id) REFERENCES Trainer(id),
-    FOREIGN KEY (kategorie_id) REFERENCES Kategorien(id) ON DELETE SET NULL,
+    FOREIGN KEY (kategorie_id) REFERENCES Kategorien(id) ON DELETE SET NULL
 
 );
 
