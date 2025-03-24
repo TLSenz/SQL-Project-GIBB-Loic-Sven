@@ -20,6 +20,7 @@ create TABLE Ort(
 create Table Trainer
 (
     id         int Auto_Increment Primary Key,
+    name varchar(30) not null,
     Geburtstag Date not null,
     Bio        text not null,
     Ort_id     int not null,
@@ -54,6 +55,7 @@ CREATE TABLE Kategorie_Kurs(
 -- Tabelle: Teilnehmer
 CREATE TABLE Portalbenutzer(
     id INT AUTO_INCREMENT PRIMARY KEY,
+    name varchar(30) not null,
     Benutzername VARCHAR(255) NOT NULL,
     email varchar(255) not null,
     Telefonnummer int not null,
@@ -68,7 +70,20 @@ CREATE TABLE Teilnahme (
     teilnehmer_id INT not null,
     bewertung INT CHECK (bewertung BETWEEN 1 AND 5) not null,
     kommentar varchar(255) not null,
+    bewertungs_datum date not null,
     PRIMARY KEY (kurs_id, teilnehmer_id),
     FOREIGN KEY (kurs_id) REFERENCES Kurse(id) ON DELETE CASCADE,
     FOREIGN KEY (teilnehmer_id) REFERENCES Portalbenutzer(id) ON DELETE CASCADE
 );
+
+
+CREATE TABLE Platform_Kurs (
+    kurs_id INT NOT NULL,
+    platform_id INT NOT NULL,
+    PRIMARY KEY (kurs_id, platform_id),
+    FOREIGN KEY (kurs_id) REFERENCES Kurs(id) ON DELETE CASCADE,
+    FOREIGN KEY (platform_id) REFERENCES Platform(id) ON DELETE CASCADE
+);
+
+
+
