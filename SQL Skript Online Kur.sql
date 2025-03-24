@@ -6,6 +6,7 @@ CREATE TABLE Kategorien (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
+
 CREATE TABLE Platform(
     id int Auto_increment Primary Key,
     name VARCHAR(255)
@@ -40,6 +41,14 @@ CREATE TABLE Kurse (
     FOREIGN KEY (Trainer_id) REFERENCES Trainer(id),
     FOREIGN KEY (kategorie_id) REFERENCES Kategorien(id) ON DELETE SET NULL
 
+);
+
+CREATE TABLE Kategorie_Kurs(
+    id int Auto_Increment Primary Key,
+    kategorie_id int,
+    Kurs_id int,
+    Foreign key (kategorie_id) references Kategorien(id),
+    foreign key (Kurs_id) references Kurse(id)
 );
 
 -- Tabelle: Teilnehmer
